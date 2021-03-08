@@ -97,6 +97,20 @@ function getStandAloneAppId(cb) {
       var appId = response[0].id;
       cb(appId);
       return;
+    } else {
+      var words = document.baseURI.split('/');
+      var ind = words.indexOf("proxy");
+      if (ind > 0) {
+        var appId = words[ind + 1];
+        cb(appId);
+        return;
+      }
+      ind = words.indexOf("history");
+      if (ind > 0) {
+        var appId = words[ind + 1];
+        cb(appId)
+        return;
+      }
     }
   });
 }
